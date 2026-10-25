@@ -29,7 +29,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 
 import App from '../App'
-import NotFoundPage from '../pages/NotFoundPage'
+import NotFoundPage from '../pages/NotFoundPage.tsx'
 import AboutPage from '../pages/AboutPage'
 import HomePage from '../pages/HomePage'
 import type { Movie } from '../types'

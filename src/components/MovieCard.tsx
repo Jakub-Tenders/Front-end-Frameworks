@@ -1,12 +1,12 @@
 import { Movie } from "../types";
 import { getGenreNames } from "../data/genres";
 import { getPosterUrl } from "../data/sampleMovies";
+import { useAppContext } from "../context/AppContext";
 
-interface MovieCardProps {
-  movie: Movie;
-}
+type MovieCardProps = { movie: Movie; onMovieClick: (movie: Movie) => void };
 
-const MovieCard = ({ movie }: MovieCardProps) => {
+const MovieCard = ({ movie, onMovieClick }: MovieCardProps) => {
+  const { toggleFavorite, isFavorite } = useAppContext();
   const year = movie.release_date ? movie.release_date.slice(0, 4) : "N/A";
   const genreNames = getGenreNames(movie.genre_ids);
 
@@ -22,13 +22,29 @@ const MovieCard = ({ movie }: MovieCardProps) => {
               </svg>
               {(movie.vote_average ?? 0).toFixed(1)}
             </span>
-            <button className="favorite-btn" title="Add to Watchlist">
+            <button
+              className={`favorite-btn${isFavorite(movie.id) ? " is-favorite" : ""}`}
+              title="Add to Watchlist"
+              aria-label={
+                isFavorite(movie.id)
+                  ? "Remove from Favourites"
+                  : "Add to Favourites"
+              }
+              onClick={() => toggleFavorite(movie)}
+            >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
             </button>
           </div>
-          <span className="quick-view-hint">View Details</span>
+          <span
+            className="quick-view-hint"
+            onClick={() => onMovieClick(movie)}
+            role="button"
+            tabIndex={0}
+          >
+            View Details
+          </span>
         </div>
       </div>
       <div className="movie-card-info">

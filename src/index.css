@@ -1013,3 +1013,117 @@ select {
     gap: 12px;
   }
 }
+
+/* Review form (inside the movie modal) */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.review-watched {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.review-watched input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.review-form textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px 14px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: all var(--transition-fast);
+}
+
+.review-form textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.review-form textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.review-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.review-saved {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Star rating (Letterboxd style, half stars) */
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  font-size: 30px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.star-base {
+  color: var(--border-color);
+}
+
+.star-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--star-gold);
+  pointer-events: none;
+}
+
+.star-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.star-half-left {
+  left: 0;
+}
+
+.star-half-right {
+  right: 0;
+}
+
+.star-value {
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
